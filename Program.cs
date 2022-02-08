@@ -63,7 +63,7 @@ namespace Blog
             User user = new User()
             {
                 Id = 3,
-                Name = "Mario leston rey rey",
+                Name = "Mario leston rey rey rey",
                 Bio = "Sou o mario leton rey",
                 Email = "mario@leston",
                 Image = "https://...",
