@@ -16,10 +16,15 @@ namespace Blog
 
             connection.Open();
 
-            ReadUsers(connection);
+            /*ReadUsers(connection);
             ReadRoles(connection);
             ReadTags(connection);
-            ReadCategories(connection);
+            ReadCategories(connection);*/
+
+            //CreateUser(connection);
+            //UpdateUser(connection);
+            //DeleteUser(connection);
+
 
             connection.Close();
         }
@@ -31,6 +36,50 @@ namespace Blog
 
             foreach (User user in users)
                 Console.WriteLine(user.Name);
+        }
+
+        public static void CreateUser(SqlConnection connection)
+        {
+            Repository<User> userRepository = new Repository<User>(connection);
+
+            User user = new User()
+            {
+                Id = 4,
+                Name = "Mario leston rey",
+                Bio = "Sou o mario",
+                Email = "mario@leston",
+                Image = "https://...",
+                PasswordHash = "HASH",
+                Slug = "mario-leston"
+            };
+
+            userRepository.Create(user);
+        }
+
+        public static void UpdateUser(SqlConnection connection)
+        {
+            Repository<User> userRepository = new Repository<User>(connection);
+
+            User user = new User()
+            {
+                Id = 4,
+                Name = "Mario leston rey rey",
+                Bio = "Sou o mario leton rey",
+                Email = "mario@leston",
+                Image = "https://...",
+                PasswordHash = "HASH",
+                Slug = "mario-leston"
+            };
+
+            userRepository.Update(user);
+        }
+
+        public static void DeleteUser(SqlConnection connection)
+        {
+            Repository<User> userRepository = new Repository<User>(connection);
+
+            User user = userRepository.Get(4);
+            userRepository.Delete(user);
         }
 
         public static void ReadRoles(SqlConnection connection)
