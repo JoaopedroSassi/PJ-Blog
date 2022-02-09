@@ -18,14 +18,15 @@ namespace Blog
 
             ReadUsers(connection);
             ReadRoles(connection);
-
+            ReadTags(connection);
+            ReadCategories(connection);
 
             connection.Close();
         }
 
         public static void ReadUsers(SqlConnection connection)
         {
-            UserRepository userRepository = new UserRepository(connection);
+            Repository<User> userRepository = new Repository<User>(connection);
             List<User> users = userRepository.GetAll();
 
             foreach (User user in users)
@@ -34,11 +35,29 @@ namespace Blog
 
         public static void ReadRoles(SqlConnection connection)
         {
-            RoleRepository roleRepository = new RoleRepository(connection);
+            Repository<Role> roleRepository = new Repository<Role>(connection);
             List<Role> roles = roleRepository.GetAll();
 
             foreach (Role role in roles)
                 Console.WriteLine(role.Name);
+        }
+
+        public static void ReadTags(SqlConnection connection)
+        {
+            Repository<Tag> roleRepository = new Repository<Tag>(connection);
+            List<Tag> tags = roleRepository.GetAll();
+
+            foreach (Tag tag in tags)
+                Console.WriteLine(tag.Name);
+        }
+
+        public static void ReadCategories(SqlConnection connection)
+        {
+            Repository<Category> roleRepository = new Repository<Category>(connection);
+            List<Category> categories = roleRepository.GetAll();
+
+            foreach (Category category in categories)
+                Console.WriteLine(category.Name);
         }
     }
 }
